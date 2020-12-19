@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-size: larger;
+    font-weight: bolder;
+    color: #E27D60;
+    vertical-align: baseline;
+    background: #0f1923;
+    font-family: "Tahoma";
+}
+
+.hideDiv {
+    display: none;
+}
+
+.labelOneLine {
+    display: block;
+    padding-bottom: 5px;
+}
+
+#container {
+    margin: auto;
+    width: 60%;
+}
+
+.divOptionsColor {
+    background: #192a3a;
+}
+
+.divPadding{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.button {
+    width: 200px;
+    height: 40px;
+    background: #0f1923;
+    position: relative;
+    margin-bottom: 25px;
+    border: 2px solid #E27D60;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    color: #E27D60;
+}
+
+.buttonImpColor {
+    background: #192a3a;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.button:hover{
+    opacity: 1;
+    background: #070d13;
+}

@@ -1,0 +1,160 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Dee's Tool</title>
+
+        <script defer src='main.js'></script>
+        
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body onload="setup()">
+        
+        <div id='container'>
+
+            <!-- Header Buttons to Switch Tabs -->
+            <div id='divHeader' class='divPadding'>
+                <button class='button' onclick='changeTab(0)'>Add Text to Tabbed Data</button>
+                <button class='button' onclick='changeTab(1)'>Global Scripts</button>
+                <button class='button' onclick='changeTab(2)'>Add Commas/Apostrophes</button>
+                <button class='button' onclick='changeTab(3)'>Remove Empty Lines</button>
+                <button class='button' onclick='changeTab(4)'>H4ck3r Tr4n574t10n</button>
+            </div>
+
+            <!-- ===================================================================== -->
+            <!--                            Sections                                   -->
+            <!-- ===================================================================== -->
+
+            <!-- Custom Text Between Tabbed Data -->
+            <div id='tab1' class='tab divCenter'>
+                <div id='tab1Options'  class='divPadding divOptionsColor'>
+                    <label>Separator Character</label>
+                    <input id='inputTab1Separator' type='text' value='#' maxlength='1' size='1'>
+                </div>
+
+                <div id='tab1Main'>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Raw Text</label>
+                        <textarea id='tab1Input' rows='5' cols='100' placeholder='raw     tabbed  data'></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Text To Add</label>
+                        <textarea id='tab1Separators' rows='5' cols='100' placeholder='start#secondBlock#end'></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Output</label>
+                        <textarea id='tab1Output' rows='5' cols='100' ></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <button class='button buttonImpColor' onclick='resetTab1()'>Reset</button>
+                        <button class='button buttonImpColor' onclick='processTab1()'>Manipulate</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Global Script Creator -->
+            <div id='tab2' class='tab'>
+                <div id='tab2Options' class='divPadding divOptionsColor'>
+                    <div>
+                        <input id='tab2AddUseCheckbox' type='checkbox' checked='True'>
+                        <label>Add "USE"?</label>
+                    </div>
+                    <div>
+                        <input id='tab2AddGoCheckbox' type='checkbox' checked='True'>
+                        <label>Add "GO" to Start and End?</label>
+                    </div>
+                </div>
+
+                <div id='tab2Main'>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Database List</label>
+                        <textarea id='tab2DatabaseList' rows='5' cols='100' placeholder='PCR4CanadaDev&#10;PCR4PloverDev'></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Script to Copy and Paste</label>
+                        <textarea id='tab2ScriptToPaste' rows='5' cols='100' placeholder='UPDATE Table&#10;SET Column="Test"&#10;WHERE Active=1'></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Output</label>
+                        <textarea id='tab2Output' rows='5' cols='100' ></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <button class='button buttonImpColor' onclick='resetTab2()'>Reset</button>
+                        <button class='button buttonImpColor' onclick='processTab2()'>Generate</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Commas and/or Apostrophes To a List -->
+            <div id='tab3' class='tab'>
+                <div id='tab3Options' class='divPadding divOptionsColor'>
+                    <div>
+                        <label>Text to Add to the End</label>
+                        <input id='tab3TextToAdd' type='text' value=',' maxlength='4' size='4'>
+                    </div>
+                    <br>
+                    <div>
+                        <input id='tab3AddApostrophesCheckbox' type='checkbox' checked='False'>
+                        <label>Add Apostrophes?</label>
+                    </div>
+                    <div>
+                        <input id='tab3TrimWhiteSpaceCheckbox' type='checkbox' checked='True'>
+                        <label>Trim White Space?</label>
+                    </div>
+                    <div>
+                        <input id='tab3IgnoreLastLineCheckbox' type='checkbox' checked='True'>
+                        <label>Ignore Last Line?</label>
+                    </div>
+                </div>
+
+                <div id='tab3Main'>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>List</label>
+                        <textarea id='tab3List' rows='5' cols='100' placeholder='Clark&#10;Peter&#10;Barry'></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <label class='labelOneLine'>Output</label>
+                        <textarea id='tab3Output' rows='5' cols='100' ></textarea>
+                    </div>
+                    <div class='divPadding'>
+                        <button class='button buttonImpColor' onclick='resetTab3()'>Reset</button>
+                        <button class='button buttonImpColor' onclick='processTab3()'>Concatenate</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Removes Empty Lines -->
+            <div id='tab4' class='tab'>
+                <div class='divPadding'>
+                    <label class='labelOneLine'>Input</label>
+                    <textarea id='tab4Input' rows='5' cols='100' ></textarea>
+                </div>
+                <div class='divPadding'>
+                    <label class='labelOneLine'>Output</label>
+                    <textarea id='tab4Output' rows='5' cols='100' ></textarea>
+                </div>
+                <div class='divPadding'>
+                    <button class='button buttonImpColor' onclick='resetTab4()'>Reset</button>
+                    <button class='button buttonImpColor' onclick='processTab4()'>Remove</button>
+                </div>
+            </div>
+
+            <!-- H4ck3r Tr4n574t10n -->
+            <div id='tab5' class='tab'>
+                <div class='divPadding'>
+                    <label class='labelOneLine'>Input</label>
+                    <textarea id='tab5Input' rows='5' cols='100' ></textarea>
+                </div>
+                <div class='divPadding'>
+                    <label class='labelOneLine'>Output</label>
+                    <textarea id='tab5Output' rows='5' cols='100' ></textarea>
+                </div>
+                <div class='divPadding'>
+                    <button class='button buttonImpColor' onclick='resetTab5()'>Reset</button>
+                    <button class='button buttonImpColor' onclick='processTab5()'>H4CK</button>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
