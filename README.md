@@ -11,6 +11,6 @@ Provides various tools to help transform data quicker and easier
 
 5. --- We won't talk about this one. For legal reasons.
 
-6. Coming Soon (Sort Lists)
+6. Sort a List - Sorts a list alphabetically, numerically, or both!
 
-7. Coming Soon (Create Incremental Lists)
+7. Create Incremental List - Create a list of numbers based on three parameters: start number, increment by, and iterations
