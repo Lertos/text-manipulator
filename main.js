@@ -243,3 +243,123 @@ function processTab5(){
         output.value += line + '\n'
     }
 }
+
+/*===================================
+
+TAB 6 - Sort a List
+
+===================================*/
+
+function resetTab6(){
+    document.getElementById('tab6AlphabeticalCheck').checked = true
+    document.getElementById('tab6NumericalCheck').checked = true
+
+    document.getElementById('radioAlphabetical').checked = true
+    document.getElementById('radioNumerical').checked = false
+    document.getElementById('radioBoth').checked = false
+
+    document.getElementById('tab6Alphabetical').classList.remove("hideDiv")
+    document.getElementById('tab6Numerical').classList.add("hideDiv")
+
+    document.getElementById('tab6List').value = ''
+    document.getElementById('tab6Output').value = ''
+}
+
+function processTab6(){
+    var input = document.getElementById('tab6List').value
+    var output = document.getElementById('tab6Output')
+ 
+    output.value = ''
+
+    //Split the list based on new line symbols
+    var arr = input.split(/\r?\n/g);
+
+    //If the list only has alphabetical characters
+    if(document.getElementById('radioAlphabetical').checked){
+        arr.sort()
+
+        //If its Z-A, reverse the order
+        if(document.getElementById('tab6AlphabeticalCheck').checked == false)
+            arr.reverse()
+    }
+
+    //If the list only has numbers
+    else if(document.getElementById('radioNumerical').checked){
+        //If 1-9
+        if(document.getElementById('tab6NumericalCheck').checked){
+            arr.sort(function(a, b){return a-b});
+        }
+        //If 9-1
+        else{
+            arr.sort(function(a, b){return b-a});
+        }
+    }
+
+    //If the list is alphanumerical
+    else if(document.getElementById('radioBoth').checked){
+        arr.sort(function(a,b){
+            // convert to strings and force lowercase
+            a = typeof a === 'string' ? a.toLowerCase() : a.toString();
+            b = typeof b === 'string' ? b.toLowerCase() : b.toString();
+        
+            return a.localeCompare(b);
+        });
+    }
+
+    //For each new line, add the desired text
+    for(var i=0; i<arr.length; i++){
+
+        //Add the full line to the output text area
+        output.value += arr[i] + '\n'
+    }
+}
+
+function changeTheText(type){
+    var alphabetical = document.getElementById('tab6Alphabetical')
+    var numerical = document.getElementById('tab6Numerical')
+
+
+    if(type == 'both'){
+        alphabetical.classList.add("hideDiv")
+        numerical.classList.add("hideDiv")
+    }
+    else if(type == 'alphabetical'){
+        alphabetical.classList.remove("hideDiv")
+        numerical.classList.add("hideDiv")
+    }
+    else if(type == 'numerical'){
+        alphabetical.classList.add("hideDiv")
+        numerical.classList.remove("hideDiv")
+    }
+
+}
+
+/*===================================
+
+TAB 7 - Create an Incremental List
+
+===================================*/
+
+function resetTab7(){
+    document.getElementById('tab7StartNumber').value = '1'
+    document.getElementById('tab7IncrementBy').value = '1'
+    document.getElementById('tab7Iterations').value = '10'
+    document.getElementById('tab7Output').value = ''
+}
+
+function processTab7(){
+    var startNumber = parseInt(document.getElementById('tab7StartNumber').value)
+    var incrementBy = parseInt(document.getElementById('tab7IncrementBy').value)
+    var iterations = parseInt(document.getElementById('tab7Iterations').value)
+    var output = document.getElementById('tab7Output')
+ 
+    output.value = ''
+    output.value += startNumber + '\n'
+
+    for(var i=0; i<iterations-1; i++){
+        startNumber += incrementBy
+
+        //Add the full line to the output text area
+        output.value += startNumber + '\n'
+    }
+}
