@@ -68,3 +68,11 @@ body {
     opacity: 1;
     background: #010203;
 }
+
+.redText{
+    color: red;
+}
+
+.greenText{
+    color: green;
+}

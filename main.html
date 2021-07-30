@@ -21,7 +21,7 @@
                 <button class='button' onclick='changeTab(4)'>If Exists Drop Block</button>
                 <button class='button' onclick='changeTab(5)'>Sort List</button>
                 <button class='button' onclick='changeTab(6)'>Create Incremental List</button>
-                <button class='button' onclick='changeTab(6)'>SQL Matcher</button>
+                <button class='button' onclick='changeTab(7)'>Code Compare</button>
                 <button class='button' onclick='changeTab(6)'>SP_HELPTEXT Generator</button>
             </div>
 
@@ -237,6 +237,25 @@
                         <button class='button buttonImpColor' onclick='resetTab7()'>Reset</button>
                         <button class='button buttonImpColor' onclick='processTab7()'>Create</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Code Compare -->
+            <div id='tab8' class='tab'>
+                <div class='divPadding'>
+                    <label class='labelOneLine'>First Code Block</label>
+                    <textarea id='tab8FirstCodeBlock' rows='5' cols='100' ></textarea>
+                </div>
+                <div class='divPadding'>
+                    <label class='labelOneLine'>Second Code Block</label>
+                    <textarea id='tab8SecondCodeBlock' rows='5' cols='100' ></textarea>
+                </div>
+                <div>
+                    <label id='tab8MatchResult'></label>
+                </div>
+                <div class='divPadding'>
+                    <button class='button buttonImpColor' onclick='resetTab8()'>Reset</button>
+                    <button class='button buttonImpColor' onclick='processTab8()'>Compare</button>
                 </div>
             </div>
 

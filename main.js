@@ -405,3 +405,47 @@ function processTab7(){
 
     output.value = stripNewLineFromEnd(output.value)
 }
+
+/*===================================
+
+TAB 8 - Code Compare
+
+===================================*/
+
+function resetTab8(){
+    document.getElementById('tab8FirstCodeBlock').value = ''
+    document.getElementById('tab8SecondCodeBlock').value = ''
+    document.getElementById('tab8MatchResult').innerHTML = ''
+}
+
+function processTab8(){
+    var firstCodeBlock = document.getElementById('tab8FirstCodeBlock')
+    var secondCodeBlock = document.getElementById('tab8SecondCodeBlock')
+    var matchResult = document.getElementById('tab8MatchResult')
+
+    var text1 = firstCodeBlock.value
+    var text2 = secondCodeBlock.value
+
+    text1 = text1.replace(/[\t\n\r]/gm,'')
+    text1 = text1.replace(/ /gm,'')
+    text1 = text1.toLowerCase()
+
+    text2 = text2.replace(/[\t\n\r]/gm,'')
+    text2 = text2.replace(/ /gm,'')
+    text2 = text2.toLowerCase()
+
+    var result = ''
+
+    if(text1 == text2){
+        result = 'Matching'
+        matchResult.classList.remove('redText')
+        matchResult.classList.add('greenText')
+    }
+    else{
+        result = 'Not Matching'
+        matchResult.classList.remove('greenText')
+        matchResult.classList.add('redText')
+    }
+
+    matchResult.innerHTML = result
+}
