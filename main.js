@@ -247,39 +247,39 @@ TAB 5 - If Exists Drop Block
 ===================================*/
 
 function resetTab5(){
-    document.getElementById('tab5Input').value = ''
+    document.getElementById('radioProcedure').checked = true
+    document.getElementById('radioFunction').checked = false
+    document.getElementById('radioView').checked = false
+
+    document.getElementById('tab5EntityName').value = ''
     document.getElementById('tab5Output').value = ''
 }
 
 function processTab5(){
-    var input = document.getElementById('tab5Input').value
+    var entityName = document.getElementById('tab5EntityName').value
     var output = document.getElementById('tab5Output')
  
     output.value = ''
 
-    //Split the list based on new line symbols
-    var arr = input.split(/\r?\n/g);
+    //Trim the entity name
+    entityName = entityName.trim()
+    
+    //Get the entity type
+    var entityType = ''
 
-    //For each new line, add the desired text
-    for(var i=0; i<arr.length; i++){
+    if(document.getElementById('radioProcedure').checked)
+        entityType = 'PROCEDURE'
+    else if(document.getElementById('radioFunction').checked)
+        entityType = 'FUNCTION'
+    else if(document.getElementById('radioView').checked)
+        entityType = 'VIEW'
 
-        var line = arr[i].toUpperCase()
-
-        line = line.replace(/I/g, '1')
-
-        line = line.replace(/E/g, '3')
-
-        line = line.replace(/A/g, '4')
-
-        line = line.replace(/S/g, '5')
-
-        //line = line.replace(/L/g, '7')
-
-        line = line.replace(/O/g, '0')
-
-        //Add the full line to the output text area
-        output.value += line + '\n'
-    }
+    output.value += "GO\n"
+    output.value += "IF OBJECT_ID('[dbo].[" + entityName + "]') IS NOT NULL\n"
+    output.value += "BEGIN\n"
+    output.value += "\tDROP " + entityType + " [dbo].[" + entityName + "]\n"
+    output.value += "END\n"
+    output.value += "GO\n"
 }
 
 /*===================================

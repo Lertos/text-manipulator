@@ -143,11 +143,22 @@
                 </div>
             </div>
 
-            <!-- H4ck3r Tr4n574t10n -->
+            <!-- If Exists Drop Block -->
             <div id='tab5' class='tab'>
-                <div class='divPadding'>
-                    <label class='labelOneLine'>Input</label>
-                    <textarea id='tab5Input' rows='5' cols='100' ></textarea>
+                <div id='tab5Options' class='divPadding divOptionsColor'>
+                    <div>
+                        <label>Entity Name</label>
+                        <input id='tab5EntityName' type='text' maxlength='120' size='30'>
+                    </div>
+                    <br>
+                    <form>
+                        <input type="radio" id="radioProcedure" name="type" value="procedure" checked>
+                        <label for="procedure">Procedure</label><br>
+                        <input type="radio" id="radioFunction" name="type" value="function">
+                        <label for="function">Function</label><br>
+                        <input type="radio" id="radioView" name="type" value="view">
+                        <label for="view">View</label>
+                    </form>
                 </div>
                 <div class='divPadding'>
                     <label class='labelOneLine'>Output</label>
@@ -155,21 +166,21 @@
                 </div>
                 <div class='divPadding'>
                     <button class='button buttonImpColor' onclick='resetTab5()'>Reset</button>
-                    <button class='button buttonImpColor' onclick='processTab5()'>H4CK</button>
+                    <button class='button buttonImpColor' onclick='processTab5()'>Drop It</button>
                 </div>
             </div>
 
             <!-- Sort a List -->
             <div id='tab6' class='tab'>
                 <div id='tab6Options' class='divPadding divOptionsColor'>
-                    <div>
+                    <form>
                         <input type="radio" id="radioAlphabetical" name="type" value="alphabetical" checked onclick="changeTheText(this.value);">
                         <label for="alphabetical">Alphabetical Only</label><br>
                         <input type="radio" id="radioNumerical" name="type" value="numerical" onclick="changeTheText(this.value);">
                         <label for="numerical">Numerical Only</label><br>
                         <input type="radio" id="radioBoth" name="type" value="both" onclick="changeTheText(this.value);">
                         <label for="both">Both</label>
-                    </div>
+                    </form>
                     <br>
                     <div id='tab6Alphabetical'>
                         <input id='tab6AlphabeticalCheck' type='checkbox' checked>
