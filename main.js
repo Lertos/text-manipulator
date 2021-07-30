@@ -20,6 +20,15 @@ function changeTab(index){
     }
 }
 
+function stripNewLineFromEnd(text){
+    var textLen = text.length
+
+    if(text.substr(textLen - 1, textLen) == '\n')
+        return text.substr(0, textLen - 1)
+    else
+        return text
+}
+
 /*===================================
 
 TAB 1 - Add text between tabbed data
@@ -47,24 +56,30 @@ function processTab1(){
     //For each new line, split it up into the parts
     for(var i=0; i<arr.length; i++){
 
-        //Split the parts based on tabs
-        var partsArr = arr[i].split(/\t/g);
-        var line = ''
+        //Check for empty lines - especially the last line which usually happens when pasting
+        if(arr[i] != ''){
 
-        //For each part, add the text between the separators
-        for(var j=0; j<partsArr.length; j++){
-            if (separators.length > j)
-                line += separators[j] + partsArr[j]
-            else
-                line += partsArr[j]
+            //Split the parts based on tabs
+            var partsArr = arr[i].split(/\t/g);
+            var line = ''
 
-            if(j+1 == partsArr.length && separators.length > partsArr.length)
-                line += separators[j+1]
+            //For each part, add the text between the separators
+            for(var j=0; j<partsArr.length; j++){
+                if (separators.length > j)
+                    line += separators[j] + partsArr[j]
+                else
+                    line += partsArr[j]
+
+                if(j+1 == partsArr.length && separators.length > partsArr.length)
+                    line += separators[j+1]
+            }
+
+            //Lastly, add the line to the output text area, adding a new line at the end
+            output.value += line + '\n'
         }
-
-        //Lastly, add the line to the output text area, adding a new line at the end
-        output.value += line + '\n'
     }
+
+    output.value = stripNewLineFromEnd(output.value)
 }
 
 /*===================================
@@ -96,22 +111,28 @@ function processTab2(){
     //For each new line (database), paste the script
     for(var i=0; i<arr.length; i++){
 
-        //If desired, add the USE to the database name
-        if(addUseOption == true)
-            output.value += 'USE ' + arr[i] + '\n'
-        else
-            output.value += arr[i] + '\n'
+        //Check for empty lines - especially the last line which usually happens when pasting
+        if(arr[i] != ''){
 
-        //If desired, add the GO around the script to paste
-        if(addGoOption == true){
-            output.value += 'GO\n'
-            output.value += scriptToPaste + '\n'
-            output.value += 'GO\n'
-        }
-        else{
-            output.value += scriptToPaste + '\n'
+            //If desired, add the USE to the database name
+            if(addUseOption == true)
+                output.value += 'USE ' + arr[i] + '\n'
+            else
+                output.value += arr[i] + '\n'
+
+            //If desired, add the GO around the script to paste
+            if(addGoOption == true){
+                output.value += 'GO\n'
+                output.value += scriptToPaste + '\n'
+                output.value += 'GO\n'
+            }
+            else{
+                output.value += scriptToPaste + '\n'
+            }
         }
     }
+
+    output.value = stripNewLineFromEnd(output.value)
 }
 
 /*===================================
@@ -147,34 +168,49 @@ function processTab3(){
 
         var line = arr[i]
 
-        //If desired, trim the white space on both sides
-        if(trimWhiteOption == true){
-            line = line.trim()
-        }
+        //Check for empty lines - especially the last line which usually happens when pasting
+        if(line != ''){
 
-        //If desired, add apostrophes to both sides
-        if(addApostropheOption == true){
-            line = "'" + line + "'"
-        }
+            //If desired, trim the white space on both sides
+            if(trimWhiteOption == true){
+                line = line.trim()
+            }
 
-        //If last line should be ignored, skip the last iteration
-        if(i==arr.length-1){
-            if(ignoreLastLineOption == false){
+            //If desired, add apostrophes to both sides
+            if(addApostropheOption == true){
+                line = "'" + line + "'"
+            }
+
+            //If last line should be ignored, skip the last iteration
+            if(i==arr.length-1){
+                if(ignoreLastLineOption == false){
+                    line = line + textToAdd
+                }
+            }
+            else{
                 line = line + textToAdd
             }
-        }
-        else{
-            line = line + textToAdd
-        }
 
-        //Add the full line to the output text area
-        output.value += line + '\n'
+            //Add the full line to the output text area
+            output.value += line + '\n'
+        }
+    }
+
+    output.value = stripNewLineFromEnd(output.value)
+
+    //Check if the last character is a comma - when it shouldn't be
+    if(ignoreLastLineOption == true){
+        var outputLen = output.value.length
+
+        //Strip the textToAdd if it exists
+        if(output.value.substr(outputLen - textToAdd.length, outputLen) == textToAdd)
+            output.value = output.value.substr(0, outputLen - textToAdd.length)
     }
 }
 
 /*===================================
 
-TAB 3 - Add Commas/Apostrophes to a List
+TAB 4 - Remove Empty Lines
 
 ===================================*/
 
@@ -200,11 +236,13 @@ function processTab4(){
         else
             output.value += arr[i] + '\n'
     }
+
+    output.value = stripNewLineFromEnd(output.value)
 }
 
 /*===================================
 
-TAB 5 - H4CK3R Language
+TAB 5 - If Exists Drop Block
 
 ===================================*/
 
@@ -312,6 +350,8 @@ function processTab6(){
         //Add the full line to the output text area
         output.value += arr[i] + '\n'
     }
+
+    output.value = stripNewLineFromEnd(output.value)
 }
 
 function changeTheText(type){
@@ -362,4 +402,6 @@ function processTab7(){
         //Add the full line to the output text area
         output.value += startNumber + '\n'
     }
+
+    output.value = stripNewLineFromEnd(output.value)
 }

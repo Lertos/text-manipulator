@@ -16,6 +16,14 @@ body {
     display: none;
 }
 
+.tdAlignLeft{
+    text-align: left;
+}
+
+.tdAlignRight{
+    text-align: right;
+}
+
 .labelOneLine {
     display: block;
     padding-bottom: 5px;
@@ -39,7 +47,7 @@ body {
 .button {
     width: 200px;
     height: 40px;
-    background: #0f1923;
+    background: #162431;
     position: relative;
     margin-bottom: 25px;
     border: 2px solid #E27D60;
@@ -58,5 +66,5 @@ body {
 
 .button:hover{
     opacity: 1;
-    background: #070d13;
+    background: #010203;
 }
