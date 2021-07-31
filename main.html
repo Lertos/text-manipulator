@@ -22,12 +22,13 @@
                 <button class='button' onclick='changeTab(5)'>Sort List</button>
                 <button class='button' onclick='changeTab(6)'>Create Incremental List</button>
                 <button class='button' onclick='changeTab(7)'>Code Compare</button>
-                <button class='button' onclick='changeTab(6)'>SP_HELPTEXT Generator</button>
+                <button class='button' onclick='changeTab(8)'>Mass SP_HELPTEXT</button>
             </div>
 
             <!-- ===================================================================== -->
             <!--                            Sections                                   -->
             <!-- ===================================================================== -->
+
 
             <!-- Custom Text Between Tabbed Data -->
             <div id='tab1' class='tab divCenter'>
@@ -55,6 +56,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Global Script Creator -->
             <div id='tab2' class='tab'>
@@ -88,6 +90,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Add Commas and/or Apostrophes To a List -->
             <div id='tab3' class='tab'>
@@ -127,6 +130,7 @@
                 </div>
             </div>
 
+
             <!-- Removes Empty Lines -->
             <div id='tab4' class='tab'>
                 <div class='divPadding'>
@@ -142,6 +146,7 @@
                     <button class='button buttonImpColor' onclick='processTab4()'>Remove</button>
                 </div>
             </div>
+
 
             <!-- If Exists Drop Block -->
             <div id='tab5' class='tab'>
@@ -170,6 +175,7 @@
                 </div>
             </div>
 
+
             <!-- Sort a List -->
             <div id='tab6' class='tab'>
                 <div id='tab6Options' class='divPadding divOptionsColor'>
@@ -186,7 +192,7 @@
                         <input id='tab6AlphabeticalCheck' type='checkbox' checked>
                         <label>A-Z</label>
                     </div>
-                    <div id='tab6Numerical' class="hideDiv">
+                    <div id='tab6Numerical' class='hideDiv'>
                         <input id='tab6NumericalCheck' type='checkbox' checked>
                         <label>1-9</label>
                     </div>
@@ -207,6 +213,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Create a List that is Incremented Based on Parameters -->
             <div id='tab7' class='tab'>
@@ -240,6 +247,7 @@
                 </div>
             </div>
 
+
             <!-- Code Compare -->
             <div id='tab8' class='tab'>
                 <div class='divPadding'>
@@ -256,6 +264,54 @@
                 <div class='divPadding'>
                     <button class='button buttonImpColor' onclick='resetTab8()'>Reset</button>
                     <button class='button buttonImpColor' onclick='processTab8()'>Compare</button>
+                </div>
+            </div>
+
+
+            <!-- Mass SP_HELPTEXT -->
+            <div id='tab9' class='tab'>
+                <div id='tab9Options' class='divPadding divOptionsColor'>
+                    <div>
+                        <label>Database Prefix</label>
+                        <input id='tab9DBPrefix' type='text' value='PCR4' maxlength='10' size='10'><br>
+                    </div>
+                    <br>
+                    <div>
+                        <label>Database Suffix</label>
+                        <input id='tab9DBSuffix' type='text' value='Dev' maxlength='10' size='10'><br>
+                    </div>
+                    <br>
+                    <div>
+                        <label>Entity Name</label>
+                        <input id='tab9EntityName' type='text' maxlength='10' size='10'>
+                    </div>
+                    <br>
+                    <form>
+                        <input type="radio" id="radioUS" name="type" value="us" checked>
+                        <label for="us">USA</label><br>
+                        <input type="radio" id="radioCanada" name="type" value="canada">
+                        <label for="canada">Canada</label><br>
+                        <input type="radio" id="radioNA" name="type" value="na">
+                        <label for="na">North America</label><br>
+                        <input type="radio" id="radioGlobal" name="type" value="global">
+                        <label for="global">Global</label><br>
+                        <input type="radio" id="radioOther" name="type" value="other" onclick="showCustomListTab9();">
+                        <label for="other">Other</label>
+                    </form>
+                    <br>
+                    <div id='tab9CustomDBListDiv' class='divPadding hideDiv'>
+                        <label class='labelOneLine'>Custom Database List</label>
+                        <textarea id='tab9CustomDBList' rows='5' cols='100' ></textarea>
+                    </div>
+                </div>
+                
+                <div class='divPadding'>
+                    <label class='labelOneLine'>Output</label>
+                    <textarea id='tab9Output' rows='5' cols='100' ></textarea>
+                </div>
+                <div class='divPadding'>
+                    <button class='button buttonImpColor' onclick='resetTab9()'>Reset</button>
+                    <button class='button buttonImpColor' onclick='processTab9()'>Generate</button>
                 </div>
             </div>
 

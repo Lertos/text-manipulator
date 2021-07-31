@@ -449,3 +449,107 @@ function processTab8(){
 
     matchResult.innerHTML = result
 }
+
+
+/*===================================
+
+TAB 9 - SP_HELPTEXT Generator
+
+===================================*/
+
+/*
+<div>
+    <label>Database Prefix</label>
+    <input id='tab9DBPrefix' type='text' value='PCR4' maxlength='10' size='10'><br>
+</div>
+<br>
+<div>
+    <label>Database Suffix</label>
+    <input id='tab9DBSuffix' type='text' value='Dev' maxlength='10' size='10'><br>
+</div>
+<br>
+<div>
+    <label>Entity Name</label>
+    <input id='tab9EntityName' type='text' maxlength='10' size='10'>
+</div>
+<br>
+<form>
+    <input type="radio" id="radioUS" name="type" value="us" checked>
+    <label for="us">USA</label><br>
+    <input type="radio" id="radioCanada" name="type" value="canada">
+    <label for="canada">Canada</label><br>
+    <input type="radio" id="radioNA" name="type" value="na">
+    <label for="na">North America</label><br>
+    <input type="radio" id="radioGlobal" name="type" value="global">
+    <label for="global">Global</label><br>
+    <input type="radio" id="radioOther" name="type" value="other" onclick="changeTheText(this.value);">
+    <label for="other">Other</label>
+</form>
+<br>
+<div class='divPadding' class='hideDiv'>
+    <label class='labelOneLine'>Custom Database List</label>
+    <textarea id='tab9CustomDBList' rows='5' cols='100' ></textarea>
+</div>
+</div>
+
+<div class='divPadding'>
+<label class='labelOneLine'>Output</label>
+<textarea id='tab9Output' rows='5' cols='100' ></textarea>
+</div>
+
+*/
+
+function resetTab9(){
+    document.getElementById('tab9DBPrefix').value = 'PCR4'
+    document.getElementById('tab9DBSuffix').value = 'Dev'
+    document.getElementById('tab9EntityName').value = ''
+    document.getElementById('tab9CustomDBList').value = ''
+    document.getElementById('tab9CustomDBListDiv').classList.add('hideDiv')
+    document.getElementById('tab9Output').value = ''
+
+    document.getElementById('radioUS').checked = true
+    document.getElementById('radioCanada').checked = false
+    document.getElementById('radioNA').checked = false
+    document.getElementById('radioGlobal').checked = false
+    document.getElementById('radioOther').checked = false
+}
+
+function processTab9(){
+    var databasePrefix = document.getElementById('tab9DBPrefix').value
+    var databaseSuffix = document.getElementById('tab9DBSuffix').value
+    var entityName = document.getElementById('tab9EntityName').value
+    var databaseList = document.getElementById('tab9CustomDBList').value
+    var output = document.getElementById('tab9Output')
+
+    var databases = {
+        'usa' : ['Burley','Easton','Plover','Othello','Onions'],
+        'canada' : ['Canada'],
+        'global' : ['Australia','Argentina','Brazil','China']
+    }
+
+    var arr = []
+
+    if(document.getElementById('radioUS').checked)
+        arr.push(...databases['usa'])
+    else if(document.getElementById('radioCanada').checked)
+        arr.push(...databases['canada'])
+    else if(document.getElementById('radioNA').checked)
+        arr.push(...databases['usa'], ...databases['canada'])
+    else if(document.getElementById('radioGlobal').checked)
+        arr.push(...databases['usa'], ...databases['canada'], ...databases['global'])
+    else
+        arr.push(...databaseList.split(/\r?\n/g))
+        
+    output.value = ''
+
+    for(var i=0; i<arr.length; i++){
+        if(arr[i] != ''){
+            output.value += "EXEC " + databasePrefix + arr[i] + databaseSuffix + ".dbo.sp_helptext '" + entityName + "'\n"
+        }
+    }
+
+}
+
+function showCustomListTab9(){
+    document.getElementById('tab9CustomDBListDiv').classList.remove('hideDiv')
+}
